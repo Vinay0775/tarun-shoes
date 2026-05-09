@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Tarun Foot Wear customer review gateway." />
+  <title>Tarun Foot Wear Review Gateway</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: "#161816",
+            coffee: "#5f3f2b",
+            leather: "#9a643c",
+            gold: "#f5b84b",
+            cream: "#fff8ec",
+            paper: "#fffdf8",
+            clay: "#d66b3d",
+            olive: "#44523c",
+            mist: "#f3eadb"
+          },
+          boxShadow: {
+            glow: "0 28px 80px rgba(95, 63, 43, 0.22)",
+            button: "0 16px 32px rgba(154, 100, 60, 0.28)"
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    :focus-visible {
+      outline: 3px solid #f5b84b;
+      outline-offset: 3px;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: linear-gradient(145deg, #fff8ec 0%, #f3eadb 46%, #eef1e8 100%);
+    }
+
+    .shoe-tread {
+      background-image:
+        linear-gradient(135deg, rgba(22, 24, 22, 0.06) 25%, transparent 25%),
+        linear-gradient(225deg, rgba(22, 24, 22, 0.06) 25%, transparent 25%);
+      background-position: 0 0, 9px 0;
+      background-size: 18px 18px;
+    }
+
+    .star-button {
+      -webkit-tap-highlight-color: transparent;
+      background: rgba(255, 253, 248, 0.92);
+      border: 1px solid rgba(95, 63, 43, 0.18);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.8), 0 8px 18px rgba(95, 63, 43, 0.08);
+      touch-action: manipulation;
+    }
+
+    .star-icon {
+      color: #b98258;
+      filter: drop-shadow(0 8px 14px rgba(154, 100, 60, 0.18));
+    }
+
+    .star-icon.is-active {
+      color: #f5b84b;
+    }
+  </style>
+</head>
+<body class="min-h-screen text-ink antialiased">
+  <main class="min-h-screen px-4 py-4 sm:px-6 sm:py-8">
+    <section class="mx-auto flex min-h-[calc(100vh-2rem)] w-full max-w-lg items-center">
+      <div class="w-full overflow-hidden rounded-[1.75rem] bg-paper shadow-glow ring-1 ring-coffee/10 sm:rounded-[2rem]">
+        <div class="relative min-h-44 overflow-hidden bg-ink sm:min-h-52">
+          <img
+            src="https://images.unsplash.com/photo-1549298916-b41d501d3772?auto=format&fit=crop&w=1400&q=86"
+            alt="Footwear display"
+            class="absolute inset-0 h-full w-full object-cover"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/50 to-ink/10"></div>
+          <div class="shoe-tread absolute inset-x-0 bottom-0 h-14 opacity-50"></div>
+          <div class="relative flex min-h-44 flex-col justify-end p-5 text-white sm:min-h-52 sm:p-7">
+            <div class="mb-4 flex items-center justify-between gap-3">
+              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-white/94 text-lg font-black text-coffee shadow-lg">
+                TF
+              </div>
+              <div class="rounded-full bg-white/14 px-3 py-1.5 text-xs font-bold uppercase tracking-[0.18em] text-white/86 backdrop-blur">
+                Review Gateway
+              </div>
+            </div>
+            <p class="text-sm font-semibold text-white/78">Share your shopping experience</p>
+            <h1 class="mt-1 text-4xl font-black tracking-normal sm:text-5xl">Tarun Foot Wear</h1>
+          </div>
+        </div>
+
+        <div class="space-y-6 p-4 sm:p-7">
+          <div class="rounded-3xl bg-cream p-4 text-center ring-1 ring-coffee/8 sm:p-5">
+            <p class="text-sm font-black uppercase tracking-[0.14em] text-leather">Rate your visit</p>
+            <p id="ratingHint" class="mx-auto mt-2 min-h-6 max-w-sm text-sm leading-6 text-ink/68">
+              Tap a star to continue.
+            </p>
+
+            <div class="mt-4 flex items-center justify-center gap-1" role="radiogroup" aria-label="Choose your rating">
+              <button class="star-button rounded-full p-1.5 transition hover:scale-105 active:scale-95" type="button" data-rating="1" role="radio" aria-checked="false" aria-label="1 star">
+                <svg class="star-icon h-10 w-10 transition sm:h-12 sm:w-12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2.35l2.97 6.02 6.65.97-4.81 4.69 1.14 6.62L12 17.52l-5.95 3.13 1.14-6.62-4.81-4.69 6.65-.97L12 2.35z" />
+                </svg>
+              </button>
+              <button class="star-button rounded-full p-1.5 transition hover:scale-105 active:scale-95" type="button" data-rating="2" role="radio" aria-checked="false" aria-label="2 stars">
+                <svg class="star-icon h-10 w-10 transition sm:h-12 sm:w-12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2.35l2.97 6.02 6.65.97-4.81 4.69 1.14 6.62L12 17.52l-5.95 3.13 1.14-6.62-4.81-4.69 6.65-.97L12 2.35z" />
+                </svg>
+              </button>
+              <button class="star-button rounded-full p-1.5 transition hover:scale-105 active:scale-95" type="button" data-rating="3" role="radio" aria-checked="false" aria-label="3 stars">
+                <svg class="star-icon h-10 w-10 transition sm:h-12 sm:w-12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2.35l2.97 6.02 6.65.97-4.81 4.69 1.14 6.62L12 17.52l-5.95 3.13 1.14-6.62-4.81-4.69 6.65-.97L12 2.35z" />
+                </svg>
+              </button>
+              <button class="star-button rounded-full p-1.5 transition hover:scale-105 active:scale-95" type="button" data-rating="4" role="radio" aria-checked="false" aria-label="4 stars">
+                <svg class="star-icon h-10 w-10 transition sm:h-12 sm:w-12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2.35l2.97 6.02 6.65.97-4.81 4.69 1.14 6.62L12 17.52l-5.95 3.13 1.14-6.62-4.81-4.69 6.65-.97L12 2.35z" />
+                </svg>
+              </button>
+              <button class="star-button rounded-full p-1.5 transition hover:scale-105 active:scale-95" type="button" data-rating="5" role="radio" aria-checked="false" aria-label="5 stars">
+                <svg class="star-icon h-10 w-10 transition sm:h-12 sm:w-12" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                  <path d="M12 2.35l2.97 6.02 6.65.97-4.81 4.69 1.14 6.62L12 17.52l-5.95 3.13 1.14-6.62-4.81-4.69 6.65-.97L12 2.35z" />
+                </svg>
+              </button>
+            </div>
+          </div>
+
+          <form id="privateFeedbackForm" class="hidden space-y-4 rounded-3xl border border-coffee/10 bg-white p-4" action="YOUR_FORMSPREE_URL" method="POST">
+            <input type="hidden" name="store" value="Tarun Foot Wear" />
+            <input id="feedbackRatingInput" type="hidden" name="rating" value="" />
+            <label for="privateFeedback" class="block text-sm font-black text-ink">Private feedback</label>
+            <textarea
+              id="privateFeedback"
+              name="message"
+              rows="5"
+              required
+              class="w-full resize-none rounded-2xl border border-coffee/15 bg-cream px-4 py-3 text-base text-ink placeholder:text-ink/38 shadow-inner transition focus:border-leather focus:bg-white focus:ring-0"
+              placeholder="Tell us what we can improve..."
+            ></textarea>
+            <button
+              type="submit"
+              class="w-full rounded-2xl bg-olive px-5 py-4 text-base font-black text-white shadow-lg shadow-olive/20 transition hover:bg-ink active:scale-[0.99]"
+            >
+              Submit Feedback
+            </button>
+            <p class="text-center text-sm leading-6">
+              <a id="directGoogleLink" class="font-bold text-leather underline decoration-leather/30 underline-offset-4 hover:text-ink" href="REPLACE_WITH_DIRECT_GMB_SHORTLINK">
+                Prefer to post your feedback on Google directly?
+              </a>
+            </p>
+          </form>
+
+          <section id="positiveReviewPanel" class="hidden space-y-5 rounded-3xl border border-coffee/10 bg-white p-4">
+            <div>
+              <p class="mb-3 text-sm font-black text-ink">Choose one highlight</p>
+              <div class="grid grid-cols-2 gap-2.5" aria-label="Review suggestions">
+                <button type="button" class="chip min-h-14 rounded-2xl border border-coffee/12 bg-cream px-4 py-3 text-left text-sm font-black text-ink transition hover:border-leather hover:bg-mist" data-category="comfortable_fit">Comfortable Fit</button>
+                <button type="button" class="chip min-h-14 rounded-2xl border border-coffee/12 bg-cream px-4 py-3 text-left text-sm font-black text-ink transition hover:border-leather hover:bg-mist" data-category="great_variety">Great Variety</button>
+                <button type="button" class="chip min-h-14 rounded-2xl border border-coffee/12 bg-cream px-4 py-3 text-left text-sm font-black text-ink transition hover:border-leather hover:bg-mist" data-category="affordable_prices">Affordable Prices</button>
+                <button type="button" class="chip min-h-14 rounded-2xl border border-coffee/12 bg-cream px-4 py-3 text-left text-sm font-black text-ink transition hover:border-leather hover:bg-mist" data-category="friendly_staff">Friendly Staff</button>
+              </div>
+            </div>
+
+            <div class="space-y-2">
+              <label for="reviewPreviewText" class="block text-sm font-black text-ink">Review message</label>
+              <textarea
+                id="reviewPreviewText"
+                rows="5"
+                class="w-full resize-none rounded-2xl border border-coffee/15 bg-cream px-4 py-3 text-sm leading-6 text-ink shadow-inner transition focus:border-leather focus:bg-white focus:ring-0"
+              ></textarea>
+            </div>
+
+            <button
+              id="postGoogleButton"
+              type="button"
+              class="flex w-full items-center justify-center gap-3 rounded-2xl bg-leather px-5 py-4 text-base font-black text-white shadow-button transition hover:bg-coffee active:scale-[0.99]"
+            >
+              <span class="flex h-7 w-7 items-center justify-center rounded-full bg-white text-sm font-black text-leather" aria-hidden="true">G</span>
+              <span>Post on Google</span>
+            </button>
+          </section>
+
+          <div id="thankYouMessage" class="hidden rounded-3xl bg-olive/10 px-4 py-4 text-center text-sm font-bold leading-6 text-olive" role="status">
+            Thank you. Your feedback has been submitted.
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="toast" class="fixed inset-0 z-50 hidden items-center justify-center bg-ink/45 p-4" role="status" aria-live="polite">
+    <div class="w-full max-w-sm rounded-3xl bg-ink px-5 py-5 text-center text-white shadow-glow">
+      <p class="text-lg font-black">Review Copied! &#128203;</p>
+      <p class="mt-2 text-sm leading-6 text-white/86">Please LONG-PRESS and PASTE on the next screen. Tip: Mention the type of shoes you bought!</p>
+    </div>
+  </div>
+
+  <div id="manualCopyModal" class="fixed inset-0 z-50 hidden items-center justify-center bg-ink/75 p-4" role="dialog" aria-modal="true" aria-labelledby="manualCopyTitle">
+    <div class="w-full max-w-md rounded-[1.75rem] bg-paper p-5 shadow-glow sm:p-6">
+      <h2 id="manualCopyTitle" class="text-xl font-black text-ink">Auto-copy failed</h2>
+      <p class="mt-2 text-sm leading-6 text-ink/70">Auto-copy failed. Please copy the text manually.</p>
+      <textarea
+        id="manualReviewText"
+        class="mt-4 h-40 w-full resize-none rounded-2xl border border-coffee/15 bg-cream p-4 text-sm leading-6 text-ink"
+        readonly
+      ></textarea>
+      <button
+        id="continueGoogleButton"
+        type="button"
+        class="mt-4 w-full rounded-2xl bg-leather px-5 py-4 text-base font-black text-white shadow-button transition hover:bg-coffee active:scale-[0.99]"
+      >
+        Continue to Google
+      </button>
+    </div>
+  </div>
+
+  <script>
+    const GMB_REVIEW_LINK = "REPLACE_WITH_DIRECT_GMB_SHORTLINK";
+    const FORMSPREE_URL = "YOUR_FORMSPREE_URL";
+
+    const reviewDatabase = {
+      comfortable_fit: [
+        "Tarun Foot Wear helped me find shoes that felt comfortable from the first try.",
+        "The fit was spot on, and the quality of the shoes felt reliable for daily use.",
+        "I bought shoes from Tarun Foot Wear and liked how easy it was to find the right size.",
+        "Their sports shoes had a comfortable fit and felt light enough for regular walking.",
+        "Tarun Foot Wear has good fitting options, especially if you want shoes that do not feel tight.",
+        "I was looking for formal wear shoes, and the pair I found here fit neatly and looked smart.",
+        "Comfort was the main thing for me, and Tarun Foot Wear had shoes that actually felt good.",
+        "The staff helped me compare sizes, and the quality of the final pair was worth it.",
+        "I picked a pair of shoes for office wear, and the fit felt balanced and comfortable.",
+        "Tarun Foot Wear had sports and casual shoes with enough size choices for a proper fit.",
+        "My new shoes from Tarun Foot Wear feel comfortable even after wearing them for hours.",
+        "The fitting experience was smooth, and the shoes felt durable without being heavy.",
+        "I liked that Tarun Foot Wear had formal wear options that were comfortable and not stiff.",
+        "Good place for shoes if you care about comfort, size, and decent quality.",
+        "The pair I bought fits well, looks clean, and feels like it will last."
+      ],
+      great_variety: [
+        "Tarun Foot Wear has a nice variety of shoes for casual use, sports, and formal wear.",
+        "I liked the range here because I could compare sports shoes and formal shoes in one visit.",
+        "There were plenty of shoes to choose from, and the quality looked good across the shelves.",
+        "Tarun Foot Wear had more variety than I expected for everyday footwear.",
+        "The store had casual shoes, formal wear, and sports options at different price points.",
+        "I found it easy to browse because Tarun Foot Wear keeps a good mix of styles.",
+        "Their variety is practical, with shoes for work, walking, and regular daily wear.",
+        "I went in for sports shoes but also saw some nice formal wear choices.",
+        "Good collection at Tarun Foot Wear, especially if you want quality shoes without visiting multiple shops.",
+        "The variety made it simple to pick something for both comfort and style.",
+        "Tarun Foot Wear had shoes for different age groups and needs, which was helpful.",
+        "I appreciated the selection because there were simple designs and more stylish pairs too.",
+        "Their sports and formal wear collection felt well stocked and easy to compare.",
+        "Nice shoe variety with useful options for office, casual outings, and daily walking.",
+        "Tarun Foot Wear offers enough choices to find a pair that matches your budget and taste."
+      ],
+      affordable_prices: [
+        "Tarun Foot Wear has affordable shoes, and the quality felt good for the price.",
+        "I found a budget-friendly pair here without compromising too much on comfort.",
+        "The prices were reasonable, especially for the quality of sports shoes available.",
+        "Tarun Foot Wear is a good place if you want shoes that look nice and stay within budget.",
+        "I picked formal wear shoes at a fair price, and they still felt well made.",
+        "The store had budget-friendly options for daily shoes and sports wear.",
+        "Good value for money at Tarun Foot Wear, with helpful choices across different ranges.",
+        "The price felt honest, and the shoes I bought seem durable for regular use.",
+        "I liked that Tarun Foot Wear had affordable prices without making the collection feel limited.",
+        "Nice quality shoes at a price that made sense for everyday shoppers.",
+        "The pair I purchased was budget-friendly and comfortable enough for daily wear.",
+        "Tarun Foot Wear had formal and casual shoes that did not feel overpriced.",
+        "Affordable prices, decent quality, and enough variety made the shopping easy.",
+        "I got sports shoes here at a good rate, and the build quality felt solid.",
+        "For anyone looking for shoes within budget, Tarun Foot Wear is worth checking."
+      ],
+      friendly_staff: [
+        "The staff at Tarun Foot Wear were friendly and helped me find the right shoes quickly.",
+        "I liked how patiently they showed sports shoes and explained the fit.",
+        "The team was polite, and they helped me compare quality and price without rushing.",
+        "Tarun Foot Wear has friendly staff who make shoe shopping feel simple.",
+        "They guided me through formal wear options and helped me choose a comfortable pair.",
+        "The staff understood what I needed and showed shoes that matched my budget.",
+        "Good service at Tarun Foot Wear, with helpful suggestions for size and comfort.",
+        "The shopping experience was smooth because the staff were attentive and easy to talk to.",
+        "They helped me check different pairs, including sports shoes and formal wear.",
+        "Tarun Foot Wear staff were courteous and gave practical advice about shoe quality.",
+        "I appreciated the friendly service, especially while deciding between two shoe styles.",
+        "The staff made sure the shoes fit properly before I bought them.",
+        "Helpful people, good quality options, and a comfortable shopping experience overall.",
+        "The team at Tarun Foot Wear was patient while I checked sizes and prices.",
+        "Friendly staff and a clean collection made my visit to Tarun Foot Wear pleasant."
+      ]
+    };
+
+    const signOffPhrases = [
+      "Highly recommend visiting them this {day}!",
+      "Picked up my new favorite pair this {day}.",
+      "Happy with my purchase this {day}.",
+      "Worth visiting Tarun Foot Wear this {day}.",
+      "A good shoe shopping stop this {day}."
+    ];
+
+    const starButtons = Array.from(document.querySelectorAll(".star-button"));
+    const chips = Array.from(document.querySelectorAll(".chip"));
+    const privateFeedbackForm = document.getElementById("privateFeedbackForm");
+    const positiveReviewPanel = document.getElementById("positiveReviewPanel");
+    const ratingHint = document.getElementById("ratingHint");
+    const feedbackRatingInput = document.getElementById("feedbackRatingInput");
+    const thankYouMessage = document.getElementById("thankYouMessage");
+    const postGoogleButton = document.getElementById("postGoogleButton");
+    const reviewPreviewText = document.getElementById("reviewPreviewText");
+    const toast = document.getElementById("toast");
+    const manualCopyModal = document.getElementById("manualCopyModal");
+    const manualReviewText = document.getElementById("manualReviewText");
+    const continueGoogleButton = document.getElementById("continueGoogleButton");
+    const directGoogleLink = document.getElementById("directGoogleLink");
+
+    let selectedRating = 0;
+    let selectedCategory = "comfortable_fit";
+
+    directGoogleLink.href = GMB_REVIEW_LINK;
+
+    function getRandomItem(items) {
+      return items[Math.floor(Math.random() * items.length)];
+    }
+
+    function getCurrentDayName() {
+      return new Date().toLocaleDateString("en-US", { weekday: "long" });
+    }
+
+    function generateUniqueReview(categoryKey) {
+      const reviews = reviewDatabase[categoryKey] || reviewDatabase.comfortable_fit;
+      const selectedReview = getRandomItem(reviews);
+      const currentDay = getCurrentDayName();
+      const signOff = getRandomItem(signOffPhrases).replace("{day}", currentDay);
+
+      return `${selectedReview} ${signOff}`;
+    }
+
+    function updateStars(rating) {
+      starButtons.forEach((button) => {
+        const buttonRating = Number(button.dataset.rating);
+        const icon = button.querySelector("svg");
+        const isActive = buttonRating <= rating;
+
+        button.setAttribute("aria-checked", String(buttonRating === rating));
+        icon.classList.toggle("is-active", isActive);
+      });
+    }
+
+    function updateChipSelection(activeCategory) {
+      chips.forEach((chip) => {
+        const isSelected = chip.dataset.category === activeCategory;
+        chip.classList.toggle("border-leather", isSelected);
+        chip.classList.toggle("bg-mist", isSelected);
+        chip.classList.toggle("shadow-sm", isSelected);
+        chip.classList.toggle("text-coffee", isSelected);
+        chip.setAttribute("aria-pressed", String(isSelected));
+      });
+    }
+
+    function showLowRatingFlow() {
+      positiveReviewPanel.classList.add("hidden");
+      privateFeedbackForm.classList.remove("hidden");
+      thankYouMessage.classList.add("hidden");
+      ratingHint.textContent = "Thanks for sharing honestly. Your private feedback helps us improve.";
+    }
+
+    function showPositiveRatingFlow() {
+      privateFeedbackForm.classList.add("hidden");
+      positiveReviewPanel.classList.remove("hidden");
+      thankYouMessage.classList.add("hidden");
+      ratingHint.textContent = "Choose a highlight and we will prepare a natural review.";
+      updateChipSelection(selectedCategory);
+      reviewPreviewText.value = generateUniqueReview(selectedCategory);
+    }
+
+    function redirectToGoogle() {
+      window.location.href = GMB_REVIEW_LINK;
+    }
+
+    function showCopiedToast() {
+      toast.classList.remove("hidden");
+      toast.classList.add("flex");
+      window.setTimeout(() => {
+        toast.classList.add("hidden");
+        toast.classList.remove("flex");
+        redirectToGoogle();
+      }, 3000);
+    }
+
+    function showManualCopyModal(reviewText) {
+      manualReviewText.value = reviewText;
+      manualCopyModal.classList.remove("hidden");
+      manualCopyModal.classList.add("flex");
+      manualReviewText.focus();
+      manualReviewText.select();
+    }
+
+    starButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        selectedRating = Number(button.dataset.rating);
+        feedbackRatingInput.value = String(selectedRating);
+        updateStars(selectedRating);
+
+        if (selectedRating <= 3) {
+          showLowRatingFlow();
+        } else {
+          showPositiveRatingFlow();
+        }
+      });
+    });
+
+    chips.forEach((chip) => {
+      chip.addEventListener("click", () => {
+        selectedCategory = chip.dataset.category;
+        updateChipSelection(selectedCategory);
+        reviewPreviewText.value = generateUniqueReview(selectedCategory);
+      });
+    });
+
+    postGoogleButton.addEventListener("click", async () => {
+      const reviewText = reviewPreviewText.value.trim() || generateUniqueReview(selectedCategory);
+
+      try {
+        await navigator.clipboard.writeText(reviewText);
+        showCopiedToast();
+      } catch (error) {
+        showManualCopyModal(reviewText);
+      }
+    });
+
+    continueGoogleButton.addEventListener("click", redirectToGoogle);
+
+    privateFeedbackForm.addEventListener("submit", async (event) => {
+      event.preventDefault();
+
+      const formData = new FormData(privateFeedbackForm);
+      const isConfigured = privateFeedbackForm.action && !privateFeedbackForm.action.includes(FORMSPREE_URL);
+
+      if (isConfigured) {
+        try {
+          await fetch(privateFeedbackForm.action, {
+            method: "POST",
+            body: formData,
+            headers: { Accept: "application/json" }
+          });
+        } catch (error) {
+          console.warn("Feedback form submission failed.", error);
+        }
+      }
+
+      privateFeedbackForm.reset();
+      privateFeedbackForm.classList.add("hidden");
+      thankYouMessage.classList.remove("hidden");
+      ratingHint.textContent = "We appreciate your feedback.";
+    });
+  </script>
+</body>
+</html>
